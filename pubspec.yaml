@@ -69,7 +69,7 @@ flutter:
         - asset: fonts/Montserrat-ExtraBold.ttf
     - family: Tw-Cen-MT
       fonts:
-        - asset: Tw-Cen-MT-Condensed-Font.ttf
+        - asset: fonts/Tw-Cen-MT-Condensed-Font.ttf
   #       - asset: fonts/Schyler-Italic.ttf
   #         style: italic
   #   - family: Trajan Pro
