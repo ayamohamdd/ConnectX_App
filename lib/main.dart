@@ -1,5 +1,6 @@
 import 'package:connect_x_app/screens/home.dart';
 import 'package:connect_x_app/screens/splash.dart';
+import 'package:connect_x_app/shared/components.dart';
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 
@@ -17,8 +18,9 @@ class MyApp extends StatelessWidget {
       debugShowCheckedModeBanner: false,
       theme: ThemeData(
         textTheme: GoogleFonts.montserratTextTheme(),
+        scaffoldBackgroundColor: BackgroundColor,
       ),
-      home: const HomeScreen(),
+      home:  SplashScreen(),
     );
   }
 }
