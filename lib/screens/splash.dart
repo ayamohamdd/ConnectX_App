@@ -1,6 +1,6 @@
 import 'package:animated_text_kit/animated_text_kit.dart';
+import 'package:connect_x_app/constants/variables/shared.dart';
 import 'package:connect_x_app/screens/home.dart';
-import 'package:connect_x_app/shared/components.dart';
 import 'package:flutter/material.dart';
 
 class SplashScreen extends StatefulWidget {
@@ -17,15 +17,15 @@ class _SplashScreenState extends State<SplashScreen> {
   }
 
   _navigatetohome(context) async {
-    await Future.delayed(Duration(milliseconds: 6300), () {});
+    await Future.delayed(const Duration(milliseconds: 6300), () {});
     Navigator.pushReplacement(
-        context, MaterialPageRoute(builder: (context) => HomeScreen()));
+        context, MaterialPageRoute(builder: (context) => const HomeScreen()));
   }
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor: BackgroundColor,
+      backgroundColor: lightColor,
       body: Container(
         width: double.infinity,
         child: Container(
@@ -37,7 +37,7 @@ class _SplashScreenState extends State<SplashScreen> {
                   height: 200,
                   child: ClipRRect(
                     borderRadius: BorderRadius.circular(20),
-                    child: Image(
+                    child: const Image(
                       image: AssetImage("images/icon.jpg"),
                     ),
                   ),
@@ -48,8 +48,8 @@ class _SplashScreenState extends State<SplashScreen> {
                     child: Text(
                       "CONNECTX",
                       style: TextStyle(
-                          color: TextColor,
-                          fontFamily: RegularFont,
+                          color: darkColor,
+                          fontFamily: regularFont,
                           fontWeight: FontWeight.w900,
                           fontSize: 40.0),
                     ),
@@ -58,8 +58,8 @@ class _SplashScreenState extends State<SplashScreen> {
                 DefaultTextStyle(
                   style: TextStyle(
                       fontSize: 17.0,
-                      fontFamily: RegularFont,
-                      color: TextColor,
+                      fontFamily: regularFont,
+                      color: darkColor,
                       letterSpacing: 9.0,
                       fontWeight: FontWeight.w700),
                   child: AnimatedTextKit(

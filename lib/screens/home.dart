@@ -1,5 +1,6 @@
 import 'package:camera/camera.dart';
 import 'package:connect_x_app/constants/components/snackbar_widget.dart';
+import 'package:connect_x_app/constants/variables/shared.dart';
 import 'package:flutter/material.dart';
 
 class HomeScreen extends StatefulWidget {
@@ -17,7 +18,7 @@ class _HomeScreenState extends State<HomeScreen> {
   void initState() {
     _controller = CameraController(
       const CameraDescription(
-        sensorOrientation: 0,
+        sensorOrientation: 1,
         name: '1',
         lensDirection: CameraLensDirection.front,
       ),
@@ -39,7 +40,6 @@ class _HomeScreenState extends State<HomeScreen> {
     double screenHeight = MediaQuery.of(context).size.height;
 
     return Scaffold(
-      backgroundColor: const Color(0xffDBDBDB),
       body: Column(
         mainAxisAlignment: MainAxisAlignment.end,
         children: [
@@ -63,9 +63,9 @@ class _HomeScreenState extends State<HomeScreen> {
                     if (snapshot.connectionState == ConnectionState.done) {
                       return CameraPreview(_controller);
                     } else {
-                      return const Center(
+                      return Center(
                         child: CircularProgressIndicator(
-                          color: Color(0xffDBDBDB),
+                          color: lightColor,
                         ),
                       );
                     }
@@ -78,19 +78,20 @@ class _HomeScreenState extends State<HomeScreen> {
           const SizedBox(
             height: 20,
           ),
-          const Padding(
-            padding: EdgeInsets.all(8.0),
+          Padding(
+            padding: const EdgeInsets.all(8.0),
             child: Text(
               'Smile To Take A Sefie :)',
               style: TextStyle(
                 fontWeight: FontWeight.bold,
-                fontSize: 26,
-                color: Color(0xff292929),
+                fontSize: 30,
+                color: darkColor,
+                fontFamily: regularFont,
               ),
             ),
           ),
           SizedBox(
-            height: screenHeight * 1 / 8,
+            height: screenHeight * 1 / 12,
           ),
           Align(
             alignment: Alignment.bottomCenter,
@@ -101,26 +102,30 @@ class _HomeScreenState extends State<HomeScreen> {
                   try {
                     final image = await _controller.takePicture();
                     ScaffoldMessenger.of(context).showSnackBar(
-                      SnackBarWidget.create('Saved successfully',true),
+                      SnackBarWidget.create('Saved successfully', true),
                     );
                   } catch (e) {
                     ScaffoldMessenger.of(context).showSnackBar(
-                      SnackBarWidget.create('Failed to save, try again',false,),
+                      SnackBarWidget.create(
+                        'Failed to save, try again',
+                        false,
+                      ),
                     );
                   }
                 },
                 style: ElevatedButton.styleFrom(
-                  backgroundColor: const Color(0xff292929),
+                  backgroundColor: darkColor,
                   shape: RoundedRectangleBorder(
                       borderRadius: BorderRadius.circular(30.0)),
                 ),
-                child: const Padding(
-                  padding: EdgeInsets.all(13.0),
+                child: Padding(
+                  padding: const EdgeInsets.all(13.0),
                   child: Text(
                     'Say Cheese!',
                     style: TextStyle(
                       fontSize: 25,
                       fontWeight: FontWeight.bold,
+                      fontFamily: regularFont,
                     ),
                   ),
                 ),
