@@ -1,4 +1,5 @@
 import 'package:camera/camera.dart';
+import 'package:connect_x_app/constants/components/snackbar_widget.dart';
 import 'package:flutter/material.dart';
 
 class HomeScreen extends StatefulWidget {
@@ -99,7 +100,14 @@ class _HomeScreenState extends State<HomeScreen> {
                 onPressed: () async {
                   try {
                     final image = await _controller.takePicture();
-                  } catch (e) {}
+                    ScaffoldMessenger.of(context).showSnackBar(
+                      SnackBarWidget.create('Saved successfully',true),
+                    );
+                  } catch (e) {
+                    ScaffoldMessenger.of(context).showSnackBar(
+                      SnackBarWidget.create('Failed to save, try again',false,),
+                    );
+                  }
                 },
                 style: ElevatedButton.styleFrom(
                   backgroundColor: const Color(0xff292929),
