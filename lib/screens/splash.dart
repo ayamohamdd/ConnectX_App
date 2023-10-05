@@ -46,12 +46,12 @@ class _SplashScreenState extends State<SplashScreen> {
                   padding: const EdgeInsets.symmetric(vertical: 13.0),
                   child: Container(
                     child: Text(
-                      "CONNECTX",
+                      "CONNECT X",
                       style: TextStyle(
                           color: darkColor,
                           fontFamily: regularFont,
                           fontWeight: FontWeight.w900,
-                          fontSize: 40.0),
+                          fontSize: 40.0,letterSpacing: 2),
                     ),
                   ),
                 ),

@@ -28,12 +28,19 @@ environment:
 # the latest version available on pub.dev. To see which dependencies have newer
 # versions available, run `flutter pub outdated`.
 dependencies:
+  animated_text_kit: ^4.2.2
   camera: ^0.10.5+5
   cupertino_icons: ^1.0.2
+  dio: ^5.3.3
   flutter:
     sdk: flutter
-  google_fonts: ^6.1.0
-  animated_text_kit: ^4.2.2
+  gallery: ^0.0.4
+  gallery_saver: ^2.3.2
+  google_fonts: ^4.0.4
+  image_gallery_saver: ^2.0.3
+  image_picker: ^1.0.4
+  path: ^1.8.3
+  path_provider: ^2.1.1
 
 dev_dependencies:
   flutter_lints: ^2.0.0
