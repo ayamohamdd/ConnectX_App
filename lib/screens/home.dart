@@ -1,18 +1,10 @@
 import 'dart:async';
-import 'dart:io';
-
 import 'package:camera/camera.dart';
 import 'package:connect_x_app/constants/components/snackbar_widget.dart';
 import 'package:connect_x_app/constants/variables/shared.dart';
-import 'package:dio/dio.dart';
 import 'package:connect_x_app/data/dio_helper.dart';
-import 'package:gallery/gallery.dart';
 import 'package:gallery_saver/gallery_saver.dart';
-import 'package:image_gallery_saver/image_gallery_saver.dart';
-import 'package:image_picker/image_picker.dart';
-import 'package:path/path.dart';
 import 'package:flutter/material.dart';
-import 'package:path_provider/path_provider.dart';
 
 class HomeScreen extends StatefulWidget {
   const HomeScreen({super.key});
@@ -46,11 +38,8 @@ class _HomeScreenState extends State<HomeScreen> {
     super.dispose();
   }
 
-  
   @override
   Widget build(BuildContext context) {
-  
-
     double screenHeight = MediaQuery.of(context).size.height;
 
     return Scaffold(
@@ -115,19 +104,16 @@ class _HomeScreenState extends State<HomeScreen> {
                 onPressed: () async {
                   try {
                     final image = await _controller.takePicture();
-                    await GallerySaver.saveImage(image.path,
-                        albumName: 'Flutter');
-                    pickImage(context);
+                    final capturedImagePath = image.path;
+                    uploadImage(capturedImagePath, context);
                     ScaffoldMessenger.of(context).showSnackBar(
-                      SnackBarWidget.create('Saved successfully', true),
+                      SnackBarWidget.create('Saved successfully', true, 20),
                     );
                   } catch (e) {
                     print(e.toString());
                     ScaffoldMessenger.of(context).showSnackBar(
                       SnackBarWidget.create(
-                        'Failed to save, try again',
-                        false,
-                      ),
+                          'Failed to save, try again', false, 20),
                     );
                   }
                 },

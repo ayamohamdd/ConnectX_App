@@ -2,7 +2,7 @@ import 'package:connect_x_app/constants/variables/shared.dart';
 import 'package:flutter/material.dart';
 
 class SnackBarWidget {
-  static SnackBar create(String message, bool success) {
+  static SnackBar create(String message, bool success, double fontSize) {
     return SnackBar(
       content: Row(
         mainAxisAlignment: MainAxisAlignment.start,
@@ -12,7 +12,7 @@ class SnackBarWidget {
             child: Text(
               message,
               style: TextStyle(
-                fontSize: 20,
+                fontSize: fontSize,
                 fontWeight: FontWeight.w500,
                 fontFamily: regularFont,
               ),
