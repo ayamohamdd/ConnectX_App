@@ -34,16 +34,11 @@ dependencies:
   dio: ^5.3.3
   flutter:
     sdk: flutter
-  gallery: ^0.0.4
-  gallery_saver: ^2.3.2
   google_fonts: ^4.0.4
-  image_gallery_saver: ^2.0.3
-  image_picker: ^1.0.4
+  gsheets: ^0.5.0
+  intl: ^0.18.1
   path: ^1.8.3
   path_provider: ^2.1.1
-  gsheets: 
-  intl: ^0.18.1
-
 
 dev_dependencies:
   flutter_lints: ^2.0.0

@@ -1,10 +1,13 @@
 import 'package:connect_x_app/constants/variables/shared.dart';
+import 'package:connect_x_app/data/g_sheets.dart';
 import 'package:connect_x_app/screens/splash.dart';
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 
-void main() {
+Future<void> main() async {
   WidgetsFlutterBinding.ensureInitialized();
+  await UserSheetApi.init();
+
   runApp(const MyApp());
 }
 

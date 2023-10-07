@@ -3,7 +3,6 @@ import 'package:camera/camera.dart';
 import 'package:connect_x_app/constants/components/snackbar_widget.dart';
 import 'package:connect_x_app/constants/variables/shared.dart';
 import 'package:connect_x_app/data/dio_helper.dart';
-import 'package:gallery_saver/gallery_saver.dart';
 import 'package:flutter/material.dart';
 
 class HomeScreen extends StatefulWidget {
