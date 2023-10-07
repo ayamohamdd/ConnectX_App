@@ -14,7 +14,7 @@ void uploadImage(String image, BuildContext context) async {
     };
     FormData formData = FormData.fromMap(data);
     Response response = await dio.post(
-        'https://6b07-102-44-90-4.ngrok-free.app/recognize',
+        'https://878b-102-44-90-4.ngrok-free.app/recognize',
         data: formData);
     if (response.statusCode == 200) {
       print(response.data);
