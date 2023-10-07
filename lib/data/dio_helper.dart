@@ -1,6 +1,8 @@
 import 'package:connect_x_app/constants/components/snackbar_widget.dart';
+import 'package:connect_x_app/data/g_sheets.dart';
 import 'package:dio/dio.dart';
 import 'package:flutter/material.dart';
+import 'package:intl/intl.dart';
 import 'package:path/path.dart';
 
 String? recognizedName;
@@ -29,6 +31,11 @@ void uploadImage(String image, BuildContext context) async {
               20,
             ),
           );
+          await UserSheetApi.insert([
+            '${recognizedName![0].toUpperCase() + recognizedName!.substring(1)}',
+            true,
+            DateFormat.yMMMd().format(DateTime.now())
+          ]);
         } else if (recognizedNames[0] == 'Unknown') {
           recognizedName =
               'Access denied. You\'re not in our system as a team member';
