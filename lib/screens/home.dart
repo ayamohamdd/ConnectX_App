@@ -4,6 +4,7 @@ import 'package:connect_x_app/constants/components/snackbar_widget.dart';
 import 'package:connect_x_app/constants/variables/shared.dart';
 import 'package:connect_x_app/data/dio_helper.dart';
 import 'package:flutter/material.dart';
+import 'package:loading_animation_widget/loading_animation_widget.dart';
 
 class HomeScreen extends StatefulWidget {
   const HomeScreen({super.key});
@@ -37,6 +38,12 @@ class _HomeScreenState extends State<HomeScreen> {
     super.dispose();
   }
 
+  Future<String> getData() {
+    return Future.delayed(Duration(seconds: 3), () {
+      return "I am data";
+    });
+  }
+
   @override
   Widget build(BuildContext context) {
     double screenHeight = MediaQuery.of(context).size.height;
@@ -66,13 +73,14 @@ class _HomeScreenState extends State<HomeScreen> {
                       return CameraPreview(_controller);
                     } else {
                       return Center(
-                        child: CircularProgressIndicator(
-                          color: lightColor,
+                        child: LoadingAnimationWidget.staggeredDotsWave(
+                          color: Colors.black,
+                          size: 200,
                         ),
                       );
                     }
                   }),
-                  future: _initializeControllerFuture,
+                  future: getData(),
                 ),
               ),
             ),
