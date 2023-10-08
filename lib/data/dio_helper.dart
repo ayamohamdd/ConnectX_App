@@ -16,7 +16,7 @@ void uploadImage(String image, BuildContext context) async {
     };
     FormData formData = FormData.fromMap(data);
     Response response = await dio.post(
-        'https://878b-102-44-90-4.ngrok-free.app/recognize',
+        'https://9643-102-44-90-4.ngrok-free.app/recognize',
         data: formData);
     if (response.statusCode == 200) {
       print(response.data);
@@ -32,7 +32,7 @@ void uploadImage(String image, BuildContext context) async {
             ),
           );
           await UserSheetApi.insert([
-            '${recognizedName![0].toUpperCase() + recognizedName!.substring(1)}',
+            (recognizedName![0].toUpperCase() + recognizedName!.substring(1)),
             true,
             DateFormat.yMMMd().format(DateTime.now())
           ]);

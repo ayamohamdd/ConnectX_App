@@ -16,6 +16,7 @@ class HomeScreen extends StatefulWidget {
 class _HomeScreenState extends State<HomeScreen> {
   late CameraController _controller;
   late Future<void> _initializeControllerFuture;
+  bool isLoading = false;
 
   @override
   void initState() {
@@ -39,9 +40,13 @@ class _HomeScreenState extends State<HomeScreen> {
   }
 
   Future<String> getData() {
-    return Future.delayed(Duration(seconds: 3), () {
+    return Future.delayed(const Duration(seconds: 3), () {
       return "I am data";
     });
+  }
+
+  Future<void> combinedFuture() {
+    return Future.wait([getData(), _initializeControllerFuture]);
   }
 
   @override
@@ -70,7 +75,16 @@ class _HomeScreenState extends State<HomeScreen> {
                 child: FutureBuilder<void>(
                   builder: ((context, snapshot) {
                     if (snapshot.connectionState == ConnectionState.done) {
-                      return CameraPreview(_controller);
+                      if (isLoading) {
+                        return Center(
+                          child: LoadingAnimationWidget.staggeredDotsWave(
+                            color: Colors.black,
+                            size: 200,
+                          ),
+                        );
+                      } else {
+                        return CameraPreview(_controller);
+                      }
                     } else {
                       return Center(
                         child: LoadingAnimationWidget.staggeredDotsWave(
@@ -80,7 +94,7 @@ class _HomeScreenState extends State<HomeScreen> {
                       );
                     }
                   }),
-                  future: getData(),
+                  future: combinedFuture(),
                 ),
               ),
             ),
@@ -109,6 +123,9 @@ class _HomeScreenState extends State<HomeScreen> {
               padding: const EdgeInsets.all(20.0),
               child: ElevatedButton(
                 onPressed: () async {
+                  setState(() {
+                    isLoading = true;
+                  });
                   try {
                     final image = await _controller.takePicture();
                     final capturedImagePath = image.path;
@@ -117,11 +134,14 @@ class _HomeScreenState extends State<HomeScreen> {
                       SnackBarWidget.create('Saved successfully', true, 20),
                     );
                   } catch (e) {
-                    print(e.toString());
                     ScaffoldMessenger.of(context).showSnackBar(
                       SnackBarWidget.create(
                           'Failed to save, try again', false, 20),
                     );
+                  } finally {
+                    setState(() {
+                      isLoading = false;
+                    });
                   }
                 },
                 style: ElevatedButton.styleFrom(
