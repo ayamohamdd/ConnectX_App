@@ -1,10 +1,12 @@
 
-import 'package:flutter/material.dart';
 import 'package:sqflite/sqflite.dart';
+import 'package:flutter/material.dart';
 class db {
 
   late Database database;
   List<Map> attendants = [];
+
+
   void createdb() {
     openDatabase(
         'connectx.db',
@@ -52,13 +54,22 @@ class db {
   }
 
   void getdb(database)  {
+
     database.rawQuery('SELECT * FROM attendants').then((value){
       value.forEach((element)  {
-        //if(element['name']== 'Youssef')
+        if(element['name']== 'Youssef')
           attendants.add(element);
+
       });
+
+
     });
+
+
   }
+
+
+
 
   void deleteData({
     required int id,

@@ -1,13 +1,16 @@
 import 'package:connect_x_app/constants/components/snackbar_widget.dart';
+import 'package:connect_x_app/data/database.dart';
 import 'package:connect_x_app/data/db.dart';
 import 'package:connect_x_app/data/g_sheets.dart';
 import 'package:dio/dio.dart';
 import 'package:flutter/material.dart';
+import 'package:image_picker/image_picker.dart';
 import 'package:intl/intl.dart';
 import 'package:path/path.dart';
 
 String? recognizedName;
-db attendanceDB =  db();
+db attendanceDB = db();
+AttendanceDatabase attendanceDatabase = AttendanceDatabase();
 void uploadImage(String image, BuildContext context) async {
   Dio dio = Dio(BaseOptions(
     headers: {'Content-Type': 'multipart/form-data'},
@@ -26,7 +29,6 @@ void uploadImage(String image, BuildContext context) async {
       if (recognizedNames.isNotEmpty) {
         if (recognizedNames[0] != 'Unknown') {
           recognizedName = recognizedNames[0];
-          //attendanceDB.insertdb(image: image, date: '', name: recognizedName!);
           ScaffoldMessenger.of(context).showSnackBar(
             SnackBarWidget.create(
               'Hello ${recognizedName![0].toUpperCase() + recognizedName!.substring(1)}!',
@@ -34,6 +36,14 @@ void uploadImage(String image, BuildContext context) async {
               20,
             ),
           );
+          String formattedDateTime = DateFormat.yMMMd().add_Hm().format(DateTime.now());
+
+          attendanceDatabase.insertData('attendants', {
+            "name": recognizedName,
+            "image": image,
+            "date": formattedDateTime
+          });
+          //attendanceDB.insertdb(image: image, date: z, name: recognizedName!);
           await UserSheetApi.insert([
             (recognizedName![0].toUpperCase() + recognizedName!.substring(1)),
             true,
@@ -59,5 +69,17 @@ void uploadImage(String image, BuildContext context) async {
     }
   } catch (error) {
     print('Error: $error');
+  }
+}
+
+Future<void> pickImage(BuildContext context) async {
+  final picker = ImagePicker();
+  final pickedFile = await picker.pickImage(source: ImageSource.gallery);
+
+  print(pickedFile!.path);
+  if (pickedFile != null) {
+    uploadImage(pickedFile.path, context);
+  } else {
+    return;
   }
 }
