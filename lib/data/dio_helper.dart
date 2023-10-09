@@ -26,7 +26,7 @@ void uploadImage(String image, BuildContext context) async {
       if (recognizedNames.isNotEmpty) {
         if (recognizedNames[0] != 'Unknown') {
           recognizedName = recognizedNames[0];
-          attendanceDB.insertdb(image: image, date: '', name: recognizedName!);
+          //attendanceDB.insertdb(image: image, date: '', name: recognizedName!);
           ScaffoldMessenger.of(context).showSnackBar(
             SnackBarWidget.create(
               'Hello ${recognizedName![0].toUpperCase() + recognizedName!.substring(1)}!',

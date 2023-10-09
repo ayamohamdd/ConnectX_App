@@ -75,16 +75,7 @@ class _HomeScreenState extends State<HomeScreen> {
                 child: FutureBuilder<void>(
                   builder: ((context, snapshot) {
                     if (snapshot.connectionState == ConnectionState.done) {
-                      if (isLoading) {
-                        return Center(
-                          child: LoadingAnimationWidget.staggeredDotsWave(
-                            color: Colors.black,
-                            size: 200,
-                          ),
-                        );
-                      } else {
-                        return CameraPreview(_controller);
-                      }
+                      return CameraPreview(_controller);
                     } else {
                       return Center(
                         child: LoadingAnimationWidget.staggeredDotsWave(
