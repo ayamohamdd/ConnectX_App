@@ -13,10 +13,9 @@ class AttendanceScreen extends StatefulWidget {
 class _AttendanceScreenState extends State<AttendanceScreen> {
   db attendanceDB = db();
   AttendanceDatabase attendanceDatabase = AttendanceDatabase();
-  List<Map>? attendants=[];
+  List<Map>? attendants = [];
   myReadData() async {
-    List<Map> response =
-        await attendanceDatabase.readData('attendants');
+    List<Map> response = await attendanceDatabase.readData('attendants');
     attendants!.addAll(response);
     //isLoading = false;
     setState(() {});
@@ -42,7 +41,7 @@ class _AttendanceScreenState extends State<AttendanceScreen> {
         centerTitle: true,
       ),
       body: Padding(
-        padding: const EdgeInsets.symmetric(vertical: 10.0,horizontal: 7),
+        padding: const EdgeInsets.symmetric(vertical: 10.0, horizontal: 7),
         child: attendantsBuilder(attendants: attendants!),
       ),
     );
