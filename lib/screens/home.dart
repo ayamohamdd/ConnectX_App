@@ -4,6 +4,7 @@ import 'package:connect_x_app/constants/components/snackbar_widget.dart';
 import 'package:connect_x_app/constants/variables/shared.dart';
 import 'package:connect_x_app/data/dio_helper.dart';
 import 'package:flutter/material.dart';
+import 'package:gallery_saver/gallery_saver.dart';
 import 'package:loading_animation_widget/loading_animation_widget.dart';
 
 class HomeScreen extends StatefulWidget {
@@ -117,52 +118,7 @@ class _HomeScreenState extends State<HomeScreen> {
           SizedBox(
             height: screenHeight * 1 / 12,
           ),
-          Align(
-            alignment: Alignment.bottomCenter,
-            child: Padding(
-              padding: const EdgeInsets.all(20.0),
-              child: ElevatedButton(
-                onPressed: () async {
-                  setState(() {
-                    isLoading = true;
-                  });
-                  try {
-                    final image = await _controller.takePicture();
-                    final capturedImagePath = image.path;
-                    uploadImage(capturedImagePath, context);
-                    ScaffoldMessenger.of(context).showSnackBar(
-                      SnackBarWidget.create('Saved successfully', true, 20),
-                    );
-                  } catch (e) {
-                    ScaffoldMessenger.of(context).showSnackBar(
-                      SnackBarWidget.create(
-                          'Failed to save, try again', false, 20),
-                    );
-                  } finally {
-                    setState(() {
-                      isLoading = false;
-                    });
-                  }
-                },
-                style: ElevatedButton.styleFrom(
-                  backgroundColor: darkColor,
-                  shape: RoundedRectangleBorder(
-                      borderRadius: BorderRadius.circular(30.0)),
-                ),
-                child: Padding(
-                  padding: const EdgeInsets.all(13.0),
-                  child: Text(
-                    'Say Cheese!',
-                    style: TextStyle(
-                      fontSize: 25,
-                      fontWeight: FontWeight.bold,
-                      fontFamily: regularFont,
-                    ),
-                  ),
-                ),
-              ),
-            ),
-          ),
+         
         ],
       ),
     );
