@@ -77,7 +77,7 @@ Widget attendantsBuilder({
         itemBuilder: (context, index) {
           return attendantItem(attendants[index], context);
         },
-        separatorBuilder: (context, index) => myseperator(),
+        separatorBuilder: (context, index) => SizedBox(height: 10,),
         itemCount: attendants.length,
       ),
       fallback: (context) => const Center(
@@ -106,7 +106,7 @@ Widget attendantsBuilder({
     );
 Widget myseperator() => Padding(
       padding: const EdgeInsetsDirectional.only(
-        start: 20.0,
+        start: 30.0,
       ),
       child: Container(
         width: double.infinity,

@@ -17,12 +17,10 @@ class LayoutScreen extends StatefulWidget {
 class _LayoutScreenState extends State<LayoutScreen> {
   List<Widget> screens = [];
   int currentIndex = 0;
-  late CameraController _controller;
 
   @override
   void initState() {
-    screens = [HomeScreen(), AttendanceScreen()];
-    // TODO: implement initState
+    screens = [const HomeScreen(), const AttendanceScreen()];
     super.initState();
   }
 
@@ -30,44 +28,9 @@ class _LayoutScreenState extends State<LayoutScreen> {
   Widget build(BuildContext context) {
     return Scaffold(
       floatingActionButtonLocation: FloatingActionButtonLocation.centerDocked,
-      floatingActionButton: Container(
+      floatingActionButton: const SizedBox(
         height: 75,
         width: 75,
-        child: FloatingActionButton(
-          foregroundColor: Colors.transparent,
-          backgroundColor: darkColor,
-         onPressed: () async {
-                  setState(() {
-                    isLoading = true;
-                  });
-                  try {
-                    final image = await _controller.takePicture();
-                    final capturedImagePath = image.path;
-                    await GallerySaver.saveImage(image.path,
-                        albumName: 'Flutter');
-                    pickImage(context);
-                    //uploadImage(capturedImagePath, context);
-                    ScaffoldMessenger.of(context).showSnackBar(
-                      SnackBarWidget.create('Saved successfully', true, 20),
-                    );
-                  } catch (e) {
-                    ScaffoldMessenger.of(context).showSnackBar(
-                      SnackBarWidget.create(
-                          'Failed to save, try again', false, 20),
-                    );
-                  } finally {
-                    setState(() {
-                      isLoading = false;
-                    });
-                  }
-                },
-          tooltip: 'Capture',
-          child: const Icon(
-            Icons.camera_alt,
-            color: Colors.white,
-            size: 30,
-          ),
-        ),
       ),
       bottomNavigationBar: BottomAppBar(
           color: darkColor,
@@ -80,17 +43,23 @@ class _LayoutScreenState extends State<LayoutScreen> {
             unselectedItemColor: Colors.grey,
             selectedItemColor: Colors.white,
             onTap: (index) {
-              setState(() {
-                currentIndex = index;
-              });
+              if (index == 1) {
+                // If tapping on the "Attendance" tab, navigate to a new AttendanceScreen
+                Navigator.of(context).push(
+                  MaterialPageRoute(
+                    builder: (context) => AttendanceScreen(),
+                  ),
+                );
+              } else {
+                setState(() {
+                  currentIndex = index;
+                });
+              }
             },
-            items:  const [
+            items: const [
+              BottomNavigationBarItem(icon: Icon(Icons.home), label: 'Home'),
               BottomNavigationBarItem(
-                icon: Icon(Icons.home),
-                label: 'Home'
-              ),
-              BottomNavigationBarItem(
-                icon: Icon(Icons.person),label: 'Attendance'),
+                  icon: Icon(Icons.person), label: 'Attendance'),
             ],
           )),
       body: IndexedStack(

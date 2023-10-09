@@ -112,6 +112,49 @@ class _HomeScreenState extends State<HomeScreen> {
          
         ],
       ),
+     floatingActionButtonLocation: FloatingActionButtonLocation.centerDocked,
+      floatingActionButton: Transform.translate(
+        offset: Offset(0, 40),
+        child: SizedBox(
+          height: 75,
+          width: 75,
+          child: FloatingActionButton(
+            foregroundColor: Colors.transparent,
+            backgroundColor: darkColor,
+           onPressed: () async {
+                    setState(() {
+                      isLoading = true;
+                    });
+                    try {
+                      final image = await _controller.takePicture();
+                      final capturedImagePath = image.path;
+                      await GallerySaver.saveImage(image.path,
+                          albumName: 'Flutter');
+                      pickImage(context);
+                      //uploadImage(capturedImagePath, context);
+                      ScaffoldMessenger.of(context).showSnackBar(
+                        SnackBarWidget.create('Saved successfully', true, 20),
+                      );
+                    } catch (e) {
+                      ScaffoldMessenger.of(context).showSnackBar(
+                        SnackBarWidget.create(
+                            'Failed to save, try again', false, 20),
+                      );
+                    } finally {
+                      setState(() {
+                        isLoading = false;
+                      });
+                    }
+                  },
+            tooltip: 'Capture',
+            child: const Icon(
+              Icons.camera_alt,
+              color: Colors.white,
+              size: 40,
+            ),
+          ),
+        ),
+      ),
     );
   }
 }
