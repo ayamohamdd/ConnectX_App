@@ -105,6 +105,14 @@ packages:
       url: "https://pub.dev"
     source: hosted
     version: "1.17.2"
+  conditional_builder_null_safety:
+    dependency: "direct main"
+    description:
+      name: conditional_builder_null_safety
+      sha256: "4428f40c20e222acead5e424fb9fba261733fc9da06ef58a08d9477207b0adfd"
+      url: "https://pub.dev"
+    source: hosted
+    version: "0.0.6"
   cross_file:
     dependency: transitive
     description:
@@ -381,6 +389,22 @@ packages:
       url: "https://pub.dev"
     source: hosted
     version: "1.10.0"
+  sqflite:
+    dependency: "direct main"
+    description:
+      name: sqflite
+      sha256: "591f1602816e9c31377d5f008c2d9ef7b8aca8941c3f89cc5fd9d84da0c38a9a"
+      url: "https://pub.dev"
+    source: hosted
+    version: "2.3.0"
+  sqflite_common:
+    dependency: transitive
+    description:
+      name: sqflite_common
+      sha256: "1b92f368f44b0dee2425bb861cfa17b6f6cf3961f762ff6f941d20b33355660a"
+      url: "https://pub.dev"
+    source: hosted
+    version: "2.5.0"
   stack_trace:
     dependency: transitive
     description:
@@ -413,6 +437,14 @@ packages:
       url: "https://pub.dev"
     source: hosted
     version: "1.2.0"
+  synchronized:
+    dependency: transitive
+    description:
+      name: synchronized
+      sha256: "5fcbd27688af6082f5abd611af56ee575342c30e87541d0245f7ff99faa02c60"
+      url: "https://pub.dev"
+    source: hosted
+    version: "3.1.0"
   term_glyph:
     dependency: transitive
     description:
