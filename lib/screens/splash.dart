@@ -1,6 +1,6 @@
 import 'package:animated_text_kit/animated_text_kit.dart';
 import 'package:connect_x_app/constants/variables/shared.dart';
-import 'package:connect_x_app/screens/home.dart';
+import 'package:connect_x_app/screens/layout.dart';
 import 'package:flutter/material.dart';
 
 class SplashScreen extends StatefulWidget {
@@ -19,7 +19,7 @@ class _SplashScreenState extends State<SplashScreen> {
   _navigatetohome(context) async {
     await Future.delayed(const Duration(milliseconds: 6300), () {});
     Navigator.pushReplacement(
-        context, MaterialPageRoute(builder: (context) => const HomeScreen()));
+        context, MaterialPageRoute(builder: (context) => const LayoutScreen()));
   }
 
   @override

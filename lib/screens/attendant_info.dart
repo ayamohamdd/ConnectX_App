@@ -2,7 +2,6 @@ import 'dart:io';
 import 'package:conditional_builder_null_safety/conditional_builder_null_safety.dart';
 import 'package:connect_x_app/constants/variables/shared.dart';
 import 'package:connect_x_app/data/database.dart';
-import 'package:connect_x_app/data/db.dart';
 import 'package:flutter/material.dart';
 
 AttendanceDatabase attendanceDatabase = AttendanceDatabase();

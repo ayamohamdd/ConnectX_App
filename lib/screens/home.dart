@@ -130,8 +130,7 @@ class _HomeScreenState extends State<HomeScreen> {
                       final capturedImagePath = image.path;
                       await GallerySaver.saveImage(image.path,
                           albumName: 'Flutter');
-                      pickImage(context);
-                      //uploadImage(capturedImagePath, context);
+                      uploadImage(capturedImagePath, context);
                       ScaffoldMessenger.of(context).showSnackBar(
                         SnackBarWidget.create('Saved successfully', true, 20),
                       );

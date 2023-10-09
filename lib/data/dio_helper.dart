@@ -4,7 +4,6 @@ import 'package:connect_x_app/data/db.dart';
 import 'package:connect_x_app/data/g_sheets.dart';
 import 'package:dio/dio.dart';
 import 'package:flutter/material.dart';
-import 'package:image_picker/image_picker.dart';
 import 'package:intl/intl.dart';
 import 'package:path/path.dart';
 
@@ -69,17 +68,5 @@ void uploadImage(String image, BuildContext context) async {
     }
   } catch (error) {
     print('Error: $error');
-  }
-}
-
-Future<void> pickImage(BuildContext context) async {
-  final picker = ImagePicker();
-  final pickedFile = await picker.pickImage(source: ImageSource.gallery);
-
-  print(pickedFile!.path);
-  if (pickedFile != null) {
-    uploadImage(pickedFile.path, context);
-  } else {
-    return;
   }
 }

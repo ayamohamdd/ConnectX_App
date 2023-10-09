@@ -1,11 +1,7 @@
-import 'package:camera/camera.dart';
-import 'package:connect_x_app/constants/components/snackbar_widget.dart';
 import 'package:connect_x_app/constants/variables/shared.dart';
-import 'package:connect_x_app/data/dio_helper.dart';
 import 'package:connect_x_app/screens/attendance.dart';
 import 'package:connect_x_app/screens/home.dart';
 import 'package:flutter/material.dart';
-import 'package:gallery_saver/gallery_saver.dart';
 
 class LayoutScreen extends StatefulWidget {
   const LayoutScreen({super.key});
@@ -43,18 +39,9 @@ class _LayoutScreenState extends State<LayoutScreen> {
             unselectedItemColor: Colors.grey,
             selectedItemColor: Colors.white,
             onTap: (index) {
-              if (index == 1) {
-                // If tapping on the "Attendance" tab, navigate to a new AttendanceScreen
-                Navigator.of(context).push(
-                  MaterialPageRoute(
-                    builder: (context) => AttendanceScreen(),
-                  ),
-                );
-              } else {
-                setState(() {
-                  currentIndex = index;
-                });
-              }
+              setState(() {
+                currentIndex = index;
+              });
             },
             items: const [
               BottomNavigationBarItem(icon: Icon(Icons.home), label: 'Home'),
@@ -63,8 +50,8 @@ class _LayoutScreenState extends State<LayoutScreen> {
             ],
           )),
       body: IndexedStack(
-        children: screens,
         index: currentIndex,
+        children: screens,
       ),
     );
   }
