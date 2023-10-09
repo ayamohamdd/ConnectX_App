@@ -4,7 +4,7 @@ import 'package:connect_x_app/screens/home.dart';
 import 'package:flutter/material.dart';
 
 class LayoutScreen extends StatefulWidget {
-  const LayoutScreen({super.key});
+  const LayoutScreen({Key? key}) : super(key: key);
 
   @override
   State<LayoutScreen> createState() => _LayoutScreenState();
@@ -16,7 +16,7 @@ class _LayoutScreenState extends State<LayoutScreen> {
 
   @override
   void initState() {
-    screens = [const HomeScreen(), const AttendanceScreen()];
+    screens = const [HomeScreen(), AttendanceScreen()];
     super.initState();
   }
 

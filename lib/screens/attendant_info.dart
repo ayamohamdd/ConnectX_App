@@ -1,5 +1,4 @@
 import 'dart:io';
-import 'package:conditional_builder_null_safety/conditional_builder_null_safety.dart';
 import 'package:connect_x_app/constants/variables/shared.dart';
 import 'package:connect_x_app/data/database.dart';
 import 'package:flutter/material.dart';
@@ -70,38 +69,12 @@ BoxDecoration(
 Widget attendantsBuilder({
   required List<Map> attendants,
 }) =>
-    ConditionalBuilder(
-      condition: attendants.length > 0,
-      builder: (context) => ListView.separated(
-        itemBuilder: (context, index) {
-          return attendantItem(attendants[index], context);
-        },
-        separatorBuilder: (context, index) => SizedBox(height: 10,),
-        itemCount: attendants.length,
-      ),
-      fallback: (context) => const Center(
-        child: Column(
-          mainAxisAlignment: MainAxisAlignment.center,
-          children: [
-            Icon(
-              Icons.person,
-              size: 100.0,
-              color: Colors.grey,
-            ),
-            SizedBox(
-              height: 15,
-            ),
-            Text(
-              'No attendants Yet',
-              style: TextStyle(
-                fontSize: 16.0,
-                fontWeight: FontWeight.bold,
-                color: Colors.grey,
-              ),
-            ),
-          ],
-        ),
-      ),
+    ListView.separated(
+      itemBuilder: (context, index) {
+        return attendantItem(attendants[index], context);
+      },
+      separatorBuilder: (context, index) => SizedBox(height: 10,),
+      itemCount: attendants.length,
     );
 Widget myseperator() => Padding(
       padding: const EdgeInsetsDirectional.only(
